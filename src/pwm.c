@@ -1,12 +1,10 @@
 #include "stm32f0xx.h"
 #include "stm32f0_discovery.h"
 
-
 #define SCL 1
 #define SDI 2
 #define SS 4
 #define SPI_DELAY 400
-
 
 void nano_wait(int t);
 
@@ -28,7 +26,6 @@ static void sendbyte(char b)
 		b <<= 1;
 	}
 }
-
 
 static void cmd(char b)
 {
@@ -54,9 +51,6 @@ static void data(char b)
 	nano_wait(SPI_DELAY);
 }
 
-
-
-
 void init_lcd(void)
 {
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
@@ -73,7 +67,7 @@ void init_lcd(void)
 	cmd(0x06);
 }
 
-void display1(const char *s)
+void display3(const char *s)
 {
 	cmd(0x02);
 	int len;
@@ -85,7 +79,7 @@ void display1(const char *s)
 	}
 }
 
-void display2(const char *s)
+void display4(const char *s)
 {
 	cmd(0xc0);
 	int len;
@@ -123,12 +117,10 @@ void init_pwm(void) {
 //	TIM1->EGR |= TIM_EGR_UG;
 }
 
-
 void update_freq(int freq) {
 	RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
 	TIM1->PSC = (48000000 / (freq * 100)) - 1.0;
 }
-
 
 void update_rgb(int r, int g, int b) {
 	TIM1->CCR1 = r;

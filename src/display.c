@@ -142,7 +142,7 @@ void display2_dma(const char *s) {
 
 //===========================================================================
 // Display a string on line 1 by writing to the DMA sorrce.
-void display11(const char *s) {
+void display1(const char *s) {
     int x;
     for(x=0; x<16; x+=1)
         if (s[x])
@@ -156,7 +156,7 @@ void display11(const char *s) {
 
 //===========================================================================
 // Display a string on line 2 by writing to the DMA source.
-void display12(const char *s) {
+void display2(const char *s) {
     int x;
     for(x=0; x<16; x+=1)
         if (s[x])
